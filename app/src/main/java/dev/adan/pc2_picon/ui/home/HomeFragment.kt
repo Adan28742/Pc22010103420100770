@@ -46,32 +46,35 @@ class HomeFragment : Fragment() {
         val montoText = binding.etMonto.text.toString()
         val fechaText = binding.etFecha.text.toString()
 
+        // Validar campos
         if (descripcion.isEmpty() || montoText.isEmpty() || fechaText.isEmpty()) {
             Toast.makeText(requireContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
             return
         }
 
+        // Validar monto como Double
         val monto = montoText.toDoubleOrNull()
         if (monto == null) {
             Toast.makeText(requireContext(), "Monto debe ser un número válido", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val fecha: Date? = dateFormat.parse(fechaText)
-        if (fecha == null) {
+        // Validar formato de fecha usando regex
+        val dateRegex = Regex("""\d{4}-\d{2}-\d{2}""")
+        if (!dateRegex.matches(fechaText)) {
             Toast.makeText(requireContext(), "Fecha debe estar en formato yyyy-MM-dd", Toast.LENGTH_SHORT).show()
             return
         }
 
+        // Crear el objeto movimiento con fecha como String
         val movimiento = MovModel(
             descripcion = descripcion,
-            fecha = fecha,
+            fecha = fechaText,    // Guardar directamente el texto de fecha como String
             monto = monto
         )
 
-        val userId = auth.currentUser?.uid ?: return
-        db.collection("users").document(userId).collection("Movimientos")
+        // Obtener userId y guardar en Firestore
+        FirebaseFirestore.getInstance().collection("Movimientos")
             .add(movimiento)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Movimiento guardado exitosamente", Toast.LENGTH_SHORT).show()
