@@ -21,4 +21,7 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="correo">pc2@gmail.com</string>
+    <string name="contra">Contraseña: moviles</string>
+    <string name="loh">Log in</string>
 </resources>
