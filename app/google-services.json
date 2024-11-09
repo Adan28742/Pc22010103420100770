@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "347812270998",
+    "project_id": "pc2picon",
+    "storage_bucket": "pc2picon.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347812270998:android:e79b135566b08e9f7243b7",
+        "android_client_info": {
+          "package_name": "dev.adan.pc2_picon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkC3DjE4vkfZ3IvLj0hUDP8cEqYH9yFHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
